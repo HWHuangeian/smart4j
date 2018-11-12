@@ -52,7 +52,7 @@ public class DispatcherServlet extends HttpServlet {
         /**
          * 配置文件上传
          */
-        UploadHelper.init(servletContext);
+        //UploadHelper.init(servletContext);
     }
 
     private void registerServlet(ServletContext servletContext) {
