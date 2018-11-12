@@ -57,7 +57,7 @@ public final class ClassUtil {
         Set<Class<?>> classSet = new HashSet<Class<?>>();
         try {
             Enumeration<URL> urls = getClassLoader().getResources(packageName.replace(".", "/"));
-            while (urls.hasMoreElements()) {
+              while (urls.hasMoreElements()) {
                 URL url = urls.nextElement();
                 if (url != null) {
                     String protocol = url.getProtocol();
@@ -86,7 +86,7 @@ public final class ClassUtil {
         } catch (Exception e) {
             LOGGER.error("get class set failure", e);
             throw new RuntimeException(e);
-        }
+         }
         return classSet;
     }
 

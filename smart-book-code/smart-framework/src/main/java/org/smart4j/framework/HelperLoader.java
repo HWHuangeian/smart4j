@@ -23,9 +23,9 @@ public final class HelperLoader {
             BeanHelper.class,
             // 为标注了@AspectJ的Class类型创建代理对象集，放入IOC容器
             AopHelper.class,
-            // 检查容器中的每个类，为标注了@Inject的域注入依赖
+            // 检查IOC容器中的每个类，为标注了@Inject的域注入依赖
             IocHelper.class,
-            // 解析Controller的Action注解，生成保存Request和Handler映射关系的map
+            // 检查IOC容器中的Controller，为标注了@Action的方法生成Request和Handler的映射关系
             ControllerHelper.class
         };
         for (Class<?> cls : classList) {

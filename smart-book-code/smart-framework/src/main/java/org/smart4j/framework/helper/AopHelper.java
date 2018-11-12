@@ -29,11 +29,11 @@ public final class AopHelper {
 
     static {
         try {
-            //获取 目标类 和 代理类集合 之间的映射关系
+            //获取 代理类（继承于切面代理模板AspectProxy的类）和 目标类集合（遍历代理类，通过代理类头部的@AspectJ括号中的注解确认目标类） 之间的映射关系
             Map<Class<?>, Set<Class<?>>> proxyMap = createProxyMap();
-            //获取 目标类 与 代理对象列表 的映射关系
+            //获取 目标类 与 代理对象链 的映射关系（即对每个目标类，生成相应代理对象链）
             Map<Class<?>, List<Proxy>> targetMap = createTargetMap(proxyMap);
-            // 将代理对象集合 并放入IOC
+            //将 代理对象链 放入IOC
             for (Map.Entry<Class<?>, List<Proxy>> targetEntry : targetMap.entrySet()) {
                 Class<?> targetClass = targetEntry.getKey();
                 List<Proxy> proxyList = targetEntry.getValue();
@@ -65,6 +65,7 @@ public final class AopHelper {
         for (Class<?> proxyClass : proxyClassSet) {
             if (proxyClass.isAnnotationPresent(Aspect.class)) {
                 Aspect aspect = proxyClass.getAnnotation(Aspect.class);
+                // 代理标有某个注解的类
                 Set<Class<?>> targetClassSet = createTargetClassSet(aspect);
                 proxyMap.put(proxyClass, targetClassSet);
             }
@@ -95,7 +96,9 @@ public final class AopHelper {
     private static Map<Class<?>, List<Proxy>> createTargetMap(Map<Class<?>, Set<Class<?>>> proxyMap) throws Exception {
         Map<Class<?>, List<Proxy>> targetMap = new HashMap<Class<?>, List<Proxy>>(16);
         for (Map.Entry<Class<?>, Set<Class<?>>> proxyEntry : proxyMap.entrySet()) {
+            // 代理类
             Class<?> proxyClass = proxyEntry.getKey();
+            // 目标类集合
             Set<Class<?>> targetClassSet = proxyEntry.getValue();
             for (Class<?> targetClass : targetClassSet) {
                 Proxy proxy = (Proxy) proxyClass.newInstance();
