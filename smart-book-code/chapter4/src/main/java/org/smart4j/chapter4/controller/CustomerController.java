@@ -81,7 +81,7 @@ public class CustomerController {
     /**
      * 处理 删除客户 请求
      */
-    @Action("delete:/customer_edit")
+    @Action("get:/customer_edit")
     public Data delete(Param param) {
         long id = param.getLong("id");
         boolean result = customerService.deleteCustomer(id);
