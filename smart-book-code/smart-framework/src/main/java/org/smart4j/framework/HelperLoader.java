@@ -21,7 +21,7 @@ public final class HelperLoader {
             ClassHelper.class,
             // 为标注了@Controller或@Service的Class类型创建单例对象，放入IOC容器
             BeanHelper.class,
-            // 为标注了@AspectJ的Class类型创建代理对象集，放入IOC容器
+            // 获取 目标类（标注了 代理类头部@AspectJ括号中的注解 的类） 和 代理对象链 的映射关系，放入IOC容器
             AopHelper.class,
             // 检查IOC容器中的每个类，为标注了@Inject的域注入依赖
             IocHelper.class,

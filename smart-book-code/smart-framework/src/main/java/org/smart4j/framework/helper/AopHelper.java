@@ -23,7 +23,7 @@ import org.smart4j.framework.proxy.TransactionProxy;
  * @author huangyong
  * @since 1.0.0
  */
-public final class AopHelper {
+public final class  AopHelper {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AopHelper.class);
 
